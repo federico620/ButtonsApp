@@ -230,11 +230,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Proyectos\\ButtonsApi\\ButtonsApi\\ButtonsApi\\ButtonsApi.csproj",
+      "projectUniqueName": "E:\\Proyectos\\ButtonsApp\\ButtonsApi\\ButtonsApi\\ButtonsApi.csproj",
       "projectName": "ButtonsApi",
-      "projectPath": "E:\\Proyectos\\ButtonsApi\\ButtonsApi\\ButtonsApi\\ButtonsApi.csproj",
+      "projectPath": "E:\\Proyectos\\ButtonsApp\\ButtonsApi\\ButtonsApi\\ButtonsApi.csproj",
       "packagesPath": "C:\\Users\\Trassani\\.nuget\\packages\\",
-      "outputPath": "E:\\Proyectos\\ButtonsApi\\ButtonsApi\\ButtonsApi\\obj\\",
+      "outputPath": "E:\\Proyectos\\ButtonsApp\\ButtonsApi\\ButtonsApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
