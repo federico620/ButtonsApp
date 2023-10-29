@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using ButtonsApi.Models;
+using ButtonsApi.Models.Dtos;
+using ButtonsApi.Repository.IRepository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ButtonsApi.Controllers
 {
@@ -7,11 +12,155 @@ namespace ButtonsApi.Controllers
     [ApiController]
     public class ButtonController : ControllerBase
     {
+        private readonly IButtonRepository _buttonRepository;
+        private readonly IMapper _mapper;
+        protected ApiResponse _response;
+
+        public ButtonController(IButtonRepository buttonRepository, IMapper mapper)
+        {
+            _buttonRepository = buttonRepository;
+            _mapper = mapper;
+            _response = new ApiResponse();
+        }
 
         [HttpGet]
-        public string Get()
+        public async Task<ActionResult<ApiResponse>> GetAll()
         {
-            return "hola";
+            try
+            {
+                IEnumerable<Button> buttons = await _buttonRepository.GetAll();
+                _response.Result = _mapper.Map<IEnumerable<ButtonDto>>(buttons);
+                _response.StatusCode = System.Net.HttpStatusCode.OK;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.Errors = new List<string>() { ex.ToString() };
+                _response.Sucess = false;
+            }
+            return _response;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ApiResponse>> Get(int id)
+        {
+            try 
+            {
+                if(id <= 0)
+                {
+                    _response.Sucess = false;
+                    _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    return BadRequest(_response);
+                }
+                var button = await _buttonRepository.Get(x => x.Id == id);
+                if(button == null)
+                {
+                    _response.Sucess = false;
+                    _response.StatusCode = System.Net.HttpStatusCode.NotFound; 
+                    return NotFound(_response);
+                }
+                else 
+                {
+                    _response.Result = _mapper.Map<ButtonDto>(button);
+                    _response.StatusCode = System.Net.HttpStatusCode.OK;
+                    return Ok(_response);
+                }
+
+            } 
+            catch (Exception ex) 
+            {
+                _response.Errors = new List<string>() { ex.ToString() };
+                _response.Sucess = false;
+            }
+            return _response;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ApiResponse>> Create()
+        {
+            try
+            {
+                var button = new Button() { Count = 0 };
+                await _buttonRepository.Create(button);
+                _response.StatusCode = System.Net.HttpStatusCode.OK;
+                _response.Result = button; 
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.Errors = new List<string>() { ex.ToString() };
+                _response.Sucess = false;
+            }
+            return _response;
+        }
+
+        [HttpPut("{id}")]
+
+        public async Task<ActionResult<ApiResponse>> Update(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    _response.Sucess = false;
+                    _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    return BadRequest(_response);
+                }
+                var button = await _buttonRepository.Get(x => x.Id == id);
+                if (button == null)
+                {
+                    _response.Sucess = false;
+                    _response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                    return NotFound(_response);
+                }
+                else
+                {
+                    button.Count++;
+                    await _buttonRepository.Update(button);
+                    _response.Result = _mapper.Map<ButtonDto>(button);
+                    _response.StatusCode = System.Net.HttpStatusCode.OK;
+                    return Ok(_response);
+                }
+            }
+            catch (Exception ex)
+            {
+                _response.Errors = new List<string>() { ex.ToString() };
+                _response.Sucess = false;
+            }
+            return _response;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ApiResponse>> Delete(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    _response.Sucess = false;
+                    _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                    return BadRequest(_response);
+                }
+                var button = await _buttonRepository.Get(x => x.Id == id);
+                if (button == null)
+                {
+                    _response.Sucess = false;
+                    _response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                    return NotFound(_response);
+                }
+                else
+                {
+                    await _buttonRepository.Delete(button);
+                    _response.StatusCode = System.Net.HttpStatusCode.NoContent;
+                    return Ok(_response);
+                }
+            }
+            catch (Exception ex)
+            {
+                _response.Errors = new List<string>() { ex.ToString() };
+                _response.Sucess = false;
+            }
+            return _response;
         }
     }
 }
