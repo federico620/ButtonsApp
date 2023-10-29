@@ -2,9 +2,7 @@
 using ButtonsApi.Models;
 using ButtonsApi.Models.Dtos;
 using ButtonsApi.Repository.IRepository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ButtonsApi.Controllers
 {
@@ -80,7 +78,8 @@ namespace ButtonsApi.Controllers
         {
             try
             {
-                var button = new Button() { Count = 0 };
+                var buttonCreate = new ButtonCreateDto() { Count = 0 };
+                var button = _mapper.Map<Button>(buttonCreate);
                 await _buttonRepository.Create(button);
                 _response.StatusCode = System.Net.HttpStatusCode.OK;
                 _response.Result = button; 
