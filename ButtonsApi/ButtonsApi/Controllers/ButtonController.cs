@@ -150,7 +150,8 @@ namespace ButtonsApi.Controllers
                 else
                 {
                     await _buttonRepository.Delete(button);
-                    _response.StatusCode = System.Net.HttpStatusCode.NoContent;
+                    _response.StatusCode = System.Net.HttpStatusCode.OK;
+                    _response.Result = _mapper.Map<ButtonDto>(button);
                     return Ok(_response);
                 }
             }
