@@ -1,3 +1,5 @@
+import './Counter.css'
+
 function Counter({
   id,
   count,
@@ -15,7 +17,7 @@ function Counter({
     <>
       <button onClick={() => onIncrement(id)}>{name}</button>
       <span>Clicks: {count}</span>
-      <button onClick={() => onDelete?.(id)}>Borrar</button>
+      <button onClick={() => onDelete?.(id)} className="btn-delete"></button>
     </>
   );
 }

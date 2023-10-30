@@ -34,7 +34,7 @@ namespace ButtonsApi.Controllers
             catch (Exception ex)
             {
                 _response.Errors = new List<string>() { ex.ToString() };
-                _response.Sucess = false;
+                _response.Success = false;
             }
             return _response;
         }
@@ -46,14 +46,14 @@ namespace ButtonsApi.Controllers
             {
                 if(id <= 0)
                 {
-                    _response.Sucess = false;
+                    _response.Success = false;
                     _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                     return BadRequest(_response);
                 }
                 var button = await _buttonRepository.Get(x => x.Id == id);
                 if(button == null)
                 {
-                    _response.Sucess = false;
+                    _response.Success = false;
                     _response.StatusCode = System.Net.HttpStatusCode.NotFound; 
                     return NotFound(_response);
                 }
@@ -68,7 +68,7 @@ namespace ButtonsApi.Controllers
             catch (Exception ex) 
             {
                 _response.Errors = new List<string>() { ex.ToString() };
-                _response.Sucess = false;
+                _response.Success = false;
             }
             return _response;
         }
@@ -88,7 +88,7 @@ namespace ButtonsApi.Controllers
             catch (Exception ex)
             {
                 _response.Errors = new List<string>() { ex.ToString() };
-                _response.Sucess = false;
+                _response.Success = false;
             }
             return _response;
         }
@@ -101,14 +101,14 @@ namespace ButtonsApi.Controllers
             {
                 if (id <= 0)
                 {
-                    _response.Sucess = false;
+                    _response.Success = false;
                     _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                     return BadRequest(_response);
                 }
                 var button = await _buttonRepository.Get(x => x.Id == id);
                 if (button == null)
                 {
-                    _response.Sucess = false;
+                    _response.Success = false;
                     _response.StatusCode = System.Net.HttpStatusCode.NotFound;
                     return NotFound(_response);
                 }
@@ -124,7 +124,7 @@ namespace ButtonsApi.Controllers
             catch (Exception ex)
             {
                 _response.Errors = new List<string>() { ex.ToString() };
-                _response.Sucess = false;
+                _response.Success = false;
             }
             return _response;
         }
@@ -136,14 +136,14 @@ namespace ButtonsApi.Controllers
             {
                 if (id <= 0)
                 {
-                    _response.Sucess = false;
+                    _response.Success = false;
                     _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                     return BadRequest(_response);
                 }
                 var button = await _buttonRepository.Get(x => x.Id == id);
                 if (button == null)
                 {
-                    _response.Sucess = false;
+                    _response.Success = false;
                     _response.StatusCode = System.Net.HttpStatusCode.NotFound;
                     return NotFound(_response);
                 }
@@ -158,7 +158,7 @@ namespace ButtonsApi.Controllers
             catch (Exception ex)
             {
                 _response.Errors = new List<string>() { ex.ToString() };
-                _response.Sucess = false;
+                _response.Success = false;
             }
             return _response;
         }
