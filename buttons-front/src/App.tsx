@@ -40,7 +40,7 @@ function App() {
         }
       })
       .catch((error) => {
-        console.log("Hubo un error al obtener los botones:", error);
+        console.log("No se pudieron obtener los botones: ", error);
         setCounters([]);
       });
   };
@@ -60,7 +60,7 @@ function App() {
         }
       })
       .catch((error) => {
-        console.error("Hubo un error al incrementar el conteo:", error);
+        console.error("No se pudo agregar el contador: ", error);
       });
   };
 
@@ -75,7 +75,7 @@ function App() {
         }
       })
       .catch((error) => {
-        console.error("Hubo un error al incrementar el conteo:", error);
+        console.error("No se pudo incrementar el contador: ", error);
       });
   };
 
@@ -104,16 +104,16 @@ function App() {
         }
       })
       .catch((error) => {
-        console.error("Hubo un error al incrementar el conteo:", error);
+        console.error("No se pudo eliminar el contador: ", error);
       });
   };
 
   return (
     <>
       <button className="addButton" onClick={onAddCounter}>
-        Agregar
+        Agregar Botón
       </button>
-      <div className="main">
+      <div className="counters">
         {counters.length > 0 ? (
           counters.map((button) => (
             <div className="counter">
