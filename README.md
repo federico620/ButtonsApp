@@ -17,10 +17,10 @@ Asegúrate de tener instalado lo siguiente en tu sistema:
 
    ```bash
    git clone https://github.com/tuusuario/tuproyecto.git
-Navega al directorio del proyecto:
+   
+2. Navega al directorio del proyecto:
    ```bash
    cd backend
-   ```
 
 Abre el proyecto en Visual Studio.
 
