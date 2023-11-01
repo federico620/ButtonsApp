@@ -1,6 +1,6 @@
 ﻿using ButtonsApi.Models;
 
-namespace ButtonsApi.Repository.IRepository
+namespace ButtonsApi.Data.Repository.IRepository
 {
     public interface IButtonRepository : IRepository<Button>
     {

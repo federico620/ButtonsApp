@@ -1,6 +1,6 @@
 using ButtonsApi.Data;
-using ButtonsApi.Repository;
-using ButtonsApi.Repository.IRepository;
+using ButtonsApi.Data.Repository;
+using ButtonsApi.Data.Repository.IRepository;
 using ButtonsApi.Utils;
 using Microsoft.EntityFrameworkCore;
 

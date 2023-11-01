@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
+using ButtonsApi.Data.Repository.IRepository;
 using ButtonsApi.Models;
 using ButtonsApi.Models.Dtos;
-using ButtonsApi.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ButtonsApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ButtonController : ControllerBase
+    public class ButtonsController : ControllerBase
     {
         private readonly IButtonRepository _buttonRepository;
         private readonly IMapper _mapper;
         protected ApiResponse _response;
 
-        public ButtonController(IButtonRepository buttonRepository, IMapper mapper)
+        public ButtonsController(IButtonRepository buttonRepository, IMapper mapper)
         {
             _buttonRepository = buttonRepository;
             _mapper = mapper;

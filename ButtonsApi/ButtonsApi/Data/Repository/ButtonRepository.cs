@@ -1,8 +1,8 @@
 ﻿using ButtonsApi.Data;
 using ButtonsApi.Models;
-using ButtonsApi.Repository.IRepository;
+using ButtonsApi.Data.Repository.IRepository;
 
-namespace ButtonsApi.Repository
+namespace ButtonsApi.Data.Repository
 {
     public class ButtonRepository : Repository<Button>, IButtonRepository
     {

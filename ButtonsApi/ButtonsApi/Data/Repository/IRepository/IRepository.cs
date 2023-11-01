@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace ButtonsApi.Repository.IRepository
+namespace ButtonsApi.Data.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {

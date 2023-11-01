@@ -1,9 +1,9 @@
 ﻿using ButtonsApi.Data;
-using ButtonsApi.Repository.IRepository;
+using ButtonsApi.Data.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace ButtonsApi.Repository
+namespace ButtonsApi.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {

@@ -1,112 +1,61 @@
-import Counter from "./Counter";
+import {Counter} from "./Counter";
 import { useState, useEffect } from "react";
 import "./App.css";
+import { fetchButtons, addCounter, updateCounter, deleteCounter, type Counter as CounterType } from './api/api';
 
-const endpoints = {
-  BUTTON_API: `${import.meta.env.VITE_API_URL}/button`,
-} as const;
-
-type counter = {
-  id: number;
-  count: number;
-};
-
-type putButtonResponse = commonResponse & {
-  result: counter;
-};
-
-type commonResponse = {
-  error: string;
-  statusCode: number;
-  sucess: boolean;
-};
-
-type getButtonResponse = commonResponse & {
-  result: counter[];
-};
-
-type deleteButtonResponse = putButtonResponse;
-type addButtonResponse = putButtonResponse;
 
 function App() {
-  const [counters, setCounters] = useState<counter[]>([]);
-
-  const fetchButtons = () => {
-    fetch(endpoints.BUTTON_API)
-      .then((response) => response.json())
-      .then((data: getButtonResponse) => {
-        if (data.statusCode === 200) {
-          setCounters(data.result);
-        }
-      })
-      .catch((error) => {
-        console.log("No se pudieron obtener los botones: ", error);
-        setCounters([]);
-      });
-  };
+  const [counters, setCounters] = useState<CounterType[]>([]);
 
   useEffect(() => {
-    fetchButtons();
+    fetchButtonsData();
   }, []);
 
-  const onAddCounter = () => {
-    fetch(endpoints.BUTTON_API, {
-      method: "POST",
-    })
-      .then((response) => response.json())
-      .then((data: addButtonResponse) => {
-        if (data.statusCode === 200) {
-          setCounters([...counters, data.result]);
+  const fetchButtonsData = async () => {
+    try {
+      const data = await fetchButtons();
+      setCounters(data);
+    } catch (error) {
+      console.error('Error fetching buttons:', error);
+      setCounters([]);
+    }
+  };
+
+  const onAddCounter = async () => {
+    try {
+      const data = await addCounter();
+      setCounters((prevCounters) => [...prevCounters, data]);
+    } catch (error) {
+      console.error('Error adding a counter:', error);
+    }
+  }
+
+  const onIncrement = async (buttonId: number) => {
+    try {
+      const data = await updateCounter(buttonId);
+      setCounters((prevCounters) => prevCounters.map((counter) => {
+        if (counter.id === buttonId) {
+          return data;
+        } else {
+          return counter;
         }
-      })
-      .catch((error) => {
-        console.error("No se pudo agregar el contador: ", error);
-      });
-  };
+      }));
+    } catch (error) {
+      console.error('Error updating the counter:', error);
+    }
+  }
 
-  const onIncrement = (buttonId: number) => {
-    fetch(`${endpoints.BUTTON_API}/${buttonId}`, {
-      method: "PUT",
-    })
-      .then((response) => response.json())
-      .then((data: putButtonResponse) => {
-        if (data.statusCode === 200) {
-          updateCounters(data.result);
-        }
-      })
-      .catch((error) => {
-        console.error("No se pudo incrementar el contador: ", error);
-      });
-  };
-
-  const updateCounters = (counter: counter) => {
-    const newCounter = counters.map((item) =>
-      item.id === counter.id ? counter : item
-    );
-    setCounters(newCounter);
-  };
-
-  const deleteCounters = (counter: counter) => {
-    const deleteCounter = counters.findIndex((x) => x.id === counter.id);
-    const newCounters = [...counters];
-    newCounters.splice(deleteCounter, 1);
-    setCounters(newCounters);
-  };
-
-  const onDelete = (buttonId: number) => {
-    fetch(`${endpoints.BUTTON_API}/${buttonId}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data: deleteButtonResponse) => {
-        if (data.statusCode === 200) {
-          deleteCounters(data.result);
-        }
-      })
-      .catch((error) => {
-        console.error("No se pudo eliminar el contador: ", error);
-      });
-  };
+  const onDelete = async (buttonId: number) => {
+    try {
+      const counter = await deleteCounter(buttonId);
+      const deleteCounterIndex = counters.findIndex((x) => x.id === counter.id);
+      const newCounters = [...counters];
+      newCounters.splice(deleteCounterIndex, 1);
+      setCounters(newCounters);
+    } catch (error) {
+      console.error('Error deleting the counter:', error);
+    }
+  }
 
   return (
     <>
@@ -116,11 +65,10 @@ function App() {
       <div className="counters">
         {counters.length > 0 ? (
           counters.map((button) => (
-            <div className="counter">
+            <div key={button.id} className="counter">
               <Counter
                 id={button.id}
-                count={button.count}
-                name={`Botón: ${button.id}`}
+                name={`Botón: ${button.id} - Clicks: ${button.count}`}
                 key={button.id}
                 onIncrement={onIncrement}
                 onDelete={onDelete}
