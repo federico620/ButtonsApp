@@ -1,8 +1,6 @@
-# ButtonsApp
+# TotalCoin Challenge
 
 # API en C# con Entity Framework
-
-Este es un proyecto de API en C# con Entity Framework. Este README proporcionará las instrucciones necesarias para configurar la base de datos utilizando el comando `update-database` en la consola de paquetes NuGet antes de ejecutar el proyecto.
 
 ## Requisitos previos
 
@@ -10,9 +8,12 @@ Asegúrate de tener instalado lo siguiente en tu sistema:
 
 - [Visual Studio](https://visualstudio.microsoft.com/), preferiblemente la versión más reciente.
 - [Paquetes NuGet](https://www.nuget.org/), que se incluyen con Visual Studio.
+- [Visual Studio Code](https://code.visualstudio.com/)
 - SQL Server 2022
 - SQL Server Management Studio 19.1
 - Proyecto realizado con .NET 6
+- [Nodejs.org](https://nodejs.org/), versión utilizada en el proyecto (v20.5.0)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 Paquetes utilizados:
 
@@ -26,82 +27,75 @@ Paquetes utilizados:
 
 1. Clona este repositorio en tu máquina local:
 
-   ```bash
-   git clone https://github.com/tuusuario/tuproyecto.git
+   Abre una ventana de comandos y ejecuta el siguiente comando:
    
-2. Navega al directorio del proyecto:
    ```bash
-   cd backend
+   git clone https://github.com/federico620/TotalCoin-Challenge-JuniorFullstack.git
 
-Abre el proyecto en Visual Studio.
+1. Abre el proyecto "ButtonsApp.sln" ubicado dentro del proyecto en la carpeta backend con Visual Studio.
 
-Abre la Consola de Paquetes NuGet:
+2. Configura la cadena de conexión a la base de datos:
+   
+   En el proyecto abre el archivo appsettings.json desde tu Visual Studio y edita en la cadena de conexión "DefaultConnection" la variable "Server=localhost" por el nombre de tu servidor SQL "Server=nombredetuservidor"
 
-Ve a Herramientas > Gestor de Paquetes NuGet > Consola de Paquetes NuGet.
-En la Consola de Paquetes NuGet, asegúrate de seleccionar el proyecto de datos donde se encuentra tu contexto de Entity Framework.
+5. Abre la Consola de Paquetes NuGet:
 
-Ejecuta el comando update-database para aplicar las migraciones y configurar la base de datos:
+   Ve a Herramientas > Gestor de Paquetes NuGet > Consola de Paquetes NuGet.
 
-bash
+   Ejecuta el comando update-database para aplicar las migraciones y configurar la base de datos:
+   
+   ```bash
+   update-database
+   ```
+   Se habrá creado una base de datos con el nombre Buttons.
+   
+   Con la base de datos configurada, puedes ejecutar el proyecto.
 
-update-database
+7. Ejecutar el proyecto
 
-Con la base de datos configurada, puedes ejecutar el proyecto.
+   Asegúrate de que el proyecto esté seleccionado como proyecto de inicio en Visual Studio.
 
-Ejecutar el proyecto
-
-Asegúrate de que el proyecto esté seleccionado como proyecto de inicio en Visual Studio.
-
-Presiona el botón de inicio (F5) o inicia el proyecto manualmente desde Visual Studio.
+   Presiona el botón de inicio (F5) o inicia el proyecto manualmente desde Visual Studio.
 
 El proyecto de API se ejecutará y estará disponible en la URL predeterminada, que generalmente es https://localhost:port/. Puedes acceder a la API a través de esta URL.
 
-# Proyecto React con Vite
-
-Este es un proyecto de inicio para desarrollar una aplicación web utilizando React y Vite. Este README proporcionará las instrucciones necesarias para levantar el proyecto y configurar la ruta de una API mediante el archivo `.env.example`.
-
-## Requisitos previos
-
-Asegúrate de tener instalado Node.js en tu sistema. Puedes descargarlo desde [nodejs.org](https://nodejs.org/).
+# Proyecto React Vite con TypeScript
 
 ## Instrucciones de configuración
 
-1. Clona este repositorio en tu máquina local:
+1. Desde la ventana de comandos, navega al directorio del proyecto:
 
    ```bash
-   git clone https://github.com/tuusuario/tuprojecto.git
-Navega al directorio del proyecto:
-
-   ```bash
-   cd tuprojecto
+   cd TotalCoin-Challenge-JuniorFullstack
    ```
-Instala las dependencias del proyecto:
+   
+   ```bash
+   cd frontend
+   
+2. Instala las dependencias del proyecto:
 
-bash
+   ```bash
+   npm install
 
-npm install
-Crea un archivo .env basado en .env.example y define la ruta de tu API:
+3. Crea un archivo .env basado en .env.example y define la ruta de tu API:
 
-bash
+   ```bash
+   cp .env.example .env
 
-cp .env.example .env
+4. Abre el proyecto con Visual Studio Code y edita en el archivo .env la URL de tu API:
 
-Abre el archivo .env con tu editor de texto y define la URL de tu API:
+   .env
 
-dotenv
+   VITE_API_URL = https://localhost:7121/api
 
-VITE_API_URL = https://localhost:7121/api
+   Reemplaza https://localhost:7121 con la URL de tu API, VITE_API_URL = https://url:puerto/api
 
-Reemplaza https://localhost:7121/api con la URL real de tu API.
+5. Una vez que hayas configurado la ruta de la API, puedes iniciar el servidor de desarrollo. Ejecuta el siguiente comando:
 
-Instrucciones de desarrollo
-Una vez que hayas configurado la ruta de la API, puedes iniciar el servidor de desarrollo. Ejecuta el siguiente comando:
+   ```bash
+   npm run dev
 
-bash
-
-npm run dev
-
-Esto iniciará un servidor de desarrollo y abrirá la aplicación en tu navegador predeterminado. Cualquier cambio que realices en el código se reflejará automáticamente en la aplicación.
+Esto iniciará un servidor de desarrollo y abrirá la aplicación en tu navegador predeterminado.
 
 
 
