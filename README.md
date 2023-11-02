@@ -101,7 +101,7 @@ El proyecto de API se ejecutará y estará disponible en la URL predeterminada, 
    ```bash
    npm run dev
 
-Esto iniciará un servidor de desarrollo y abrirá la aplicación en tu navegador predeterminado.
+Esto iniciará un servidor de desarrollo y abrirá la aplicación en tu navegador predeterminado, si no se abre automáticamente copia la URL de la ventana de comandos en "local:" y pegala en tu navegador. 
 
 
 
