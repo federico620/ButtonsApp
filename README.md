@@ -1,7 +1,5 @@
 # TotalCoin Challenge
 
-# API en C# con Entity Framework
-
 ## Requisitos previos
 
 Asegúrate de tener instalado lo siguiente en tu sistema:
@@ -22,6 +20,8 @@ Paquetes utilizados:
 - Microsoft.EntityFrameworkCore.SqlServer 7.0.13
 - Microsoft.EntityFrameworkCore.Tools 7.0.13
 - Swashbuckle.AspNetCore 6.2.3
+
+# API en C# con Entity Framework
 
 ## Instrucciones de configuración
 
