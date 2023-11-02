@@ -84,13 +84,19 @@ El proyecto de API se ejecutará y estará disponible en la URL predeterminada, 
 
 4. Abre el proyecto con Visual Studio Code y edita en el archivo .env la URL de tu API:
 
-   .env
+   Ejecuta el comando para abrir Visual Studio Code:
+
+   ```bash
+   code .
+   ```
+
+   En el archivo .env:
 
    VITE_API_URL = https://localhost:7121/api
 
    Reemplaza https://localhost:7121 con la URL de tu API, VITE_API_URL = https://url:puerto/api
 
-5. Una vez que hayas configurado la ruta de la API, puedes iniciar el servidor de desarrollo. Ejecuta el siguiente comando:
+6. Una vez que hayas configurado la ruta de la API, puedes iniciar el servidor de desarrollo. Ejecuta el siguiente comando:
 
    ```bash
    npm run dev
