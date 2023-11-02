@@ -10,6 +10,17 @@ Asegúrate de tener instalado lo siguiente en tu sistema:
 
 - [Visual Studio](https://visualstudio.microsoft.com/), preferiblemente la versión más reciente.
 - [Paquetes NuGet](https://www.nuget.org/), que se incluyen con Visual Studio.
+- SQL Server 2022
+- SQL Server Management Studio 19.1
+- Proyecto realizado con .NET 6
+
+Paquetes utilizados:
+
+- AutoMapper 12.0.1
+- AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1
+- Microsoft.EntityFrameworkCore.SqlServer 7.0.13
+- Microsoft.EntityFrameworkCore.Tools 7.0.13
+- Swashbuckle.AspNetCore 6.2.3
 
 ## Instrucciones de configuración
 
