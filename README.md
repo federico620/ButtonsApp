@@ -1,4 +1,4 @@
-# TotalCoin Challenge
+## TotalCoin Challenge
 
 ## Requisitos previos
 
@@ -15,12 +15,19 @@ Asegúrate de tener instalado lo siguiente en tu sistema:
 
 Paquetes utilizados:
 
+BackEnd:
+
 - AutoMapper 12.0.1
 - AutoMapper.Extensions.Microsoft.DependencyInjection 12.0.1
 - Microsoft.EntityFrameworkCore.SqlServer 7.0.13
 - Microsoft.EntityFrameworkCore.Tools 7.0.13
 - Swashbuckle.AspNetCore 6.2.3
 
+FrontEnd:
+
+- react 18.2.0
+- react-dom 18.2.0
+  
 # API en C# con Entity Framework
 
 ## Instrucciones de configuración
